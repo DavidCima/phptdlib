@@ -19,6 +19,7 @@ class JsonClient : public BaseJsonClient
 
         std::string query(const char *query, double timeout, nlohmann::json* extra);
         std::string addExtraAndSendQuery(std::string type, nlohmann::json* jsonQuery, double timeout);
+        // deprecated
         double getTimeoutFromParams(Php::Parameters &params, int timeoutParameterInde);
 
     public:
@@ -39,7 +40,11 @@ class JsonClient : public BaseJsonClient
         void setDefaultTimeout(Php::Parameters &params);
 
         // tdlib Function Class Reference
+        Php::Value acceptCall(Php::Parameters &params);
+        Php::Value acceptTermsOfService(Php::Parameters &params);
         Php::Value checkDatabaseEncryptionKey(Php::Parameters &params);
+        Php::Value getAccountTtl(Php::Parameters &params);
+        Php::Value getActiveLiveLocationMessages(Php::Parameters &params);
         Php::Value getAuthorizationState(Php::Parameters &params);
         Php::Value searchPublicChats(Php::Parameters &params);
         Php::Value setAuthenticationPhoneNumber(Php::Parameters &params);
@@ -51,8 +56,8 @@ class JsonClient : public BaseJsonClient
 
 // https://core.telegram.org/tdlib/docs/classtd_1_1td__api_1_1_function.html
 /*
-- [ ] acceptCall
-- [ ] acceptTermsOfService
+- [X] acceptCall
+- [X] acceptTermsOfService
 - [ ] addChatMember
 - [ ] addChatMembers
 - [ ] addFavoriteSticker
@@ -137,7 +142,7 @@ class JsonClient : public BaseJsonClient
 - [ ] finishFileGeneration
 - [ ] forwardMessages
 - [ ] generateChatInviteLink
-- [ ] getAccountTtl
+- [X] getAccountTtl
 - [ ] getActiveLiveLocationMessages
 - [ ] getActiveSessions
 - [ ] getAllPassportElements

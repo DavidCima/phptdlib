@@ -35,7 +35,8 @@ $result = $client->setDatabaseEncryptionKey(); // checkDatabaseEncryptionKey(key
 $result = $client->getAuthorizationState(1.01234);
 
 $client->getReceivedResponses();
-// $result = $client->query(json_encode(['@type' => 'searchPublicChats', 'query' => 'tdlib']), 10);
-$result = $client->searchPublicChats('telegram');
-var_dump($client->getReceivedResponses());
+// $result = $client->searchPublicChats('telegram');
+$result = $client->getActiveLiveLocationMessages();
+var_dump($result);
+// var_dump($client->getReceivedResponses());
 $client->destroy();

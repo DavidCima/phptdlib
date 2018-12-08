@@ -176,6 +176,33 @@ void JsonClient::setDefaultTimeout(Php::Parameters &params) {
 * tdlib Function Class Reference
 **/
 
+Php::Value JsonClient::acceptCall(Php::Parameters &params) {
+    const int call_id = params[0];
+    json jsonQuery;
+    jsonQuery["call_id"] = call_id;
+    // todo: Call protocol must not be empty
+    // https://core.telegram.org/tdlib/docs/classtd_1_1td__api_1_1call_protocol.html
+    // jsonQuery["protocol"] = callProtocol;
+
+    return addExtraAndSendQuery(
+            "acceptCall",
+            &jsonQuery,
+            getTimeoutFromParams(params, 2)
+    );
+}
+
+Php::Value JsonClient::acceptTermsOfService(Php::Parameters &params) {
+    const std::string terms_of_service_id = params[0];
+    json jsonQuery;
+    jsonQuery["terms_of_service_id"] = terms_of_service_id;
+
+    return addExtraAndSendQuery(
+            "acceptTermsOfService",
+            &jsonQuery,
+            getTimeoutFromParams(params, 1)
+    );
+}
+
 Php::Value JsonClient::checkDatabaseEncryptionKey(Php::Parameters &params) {
     const std::string key = params[0];
     json jsonQuery;
@@ -185,6 +212,26 @@ Php::Value JsonClient::checkDatabaseEncryptionKey(Php::Parameters &params) {
             "checkDatabaseEncryptionKey",
             &jsonQuery,
             getTimeoutFromParams(params, 1)
+    );
+}
+
+Php::Value JsonClient::getAccountTtl(Php::Parameters &params) {
+    json jsonQuery;
+
+    return addExtraAndSendQuery(
+            "getAccountTtl",
+            &jsonQuery,
+            getTimeoutFromParams(params, 0)
+    );
+}
+
+Php::Value JsonClient::getActiveLiveLocationMessages(Php::Parameters &params) {
+    json jsonQuery;
+
+    return addExtraAndSendQuery(
+            "getActiveLiveLocationMessages",
+            &jsonQuery,
+            getTimeoutFromParams(params, 0)
     );
 }
 
