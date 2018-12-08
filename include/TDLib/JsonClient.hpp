@@ -41,6 +41,7 @@ class JsonClient : public BaseJsonClient
         // tdlib Function Class Reference
         Php::Value checkDatabaseEncryptionKey(Php::Parameters &params);
         Php::Value getAuthorizationState(Php::Parameters &params);
+        Php::Value searchPublicChats(Php::Parameters &params);
         Php::Value setAuthenticationPhoneNumber(Php::Parameters &params);
         Php::Value setDatabaseEncryptionKey(Php::Parameters &params);
         Php::Value setTdlibParameters(Php::Parameters &params);
@@ -269,7 +270,7 @@ class JsonClient : public BaseJsonClient
 - [ ] searchInstalledStickerSets
 - [ ] searchMessages
 - [ ] searchPublicChat
-- [ ] searchPublicChats
+- [X] searchPublicChats
 - [ ] searchSecretMessages
 - [ ] searchStickers
 - [ ] searchStickerSet

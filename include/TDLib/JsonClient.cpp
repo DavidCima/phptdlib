@@ -198,6 +198,18 @@ Php::Value JsonClient::getAuthorizationState(Php::Parameters &params) {
     );
 }
 
+Php::Value JsonClient::searchPublicChats(Php::Parameters &params) {
+    std::string query = params[0];
+    json jsonQuery;
+    jsonQuery["query"] = query;
+
+    return addExtraAndSendQuery(
+            "searchPublicChats",
+            &jsonQuery,
+            getTimeoutFromParams(params, 1)
+    );
+}
+
 Php::Value JsonClient::setAuthenticationPhoneNumber(Php::Parameters &params) {
     std::string phone_number = params[0];
     json jsonQuery;

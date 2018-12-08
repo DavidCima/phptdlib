@@ -72,6 +72,10 @@ PHPCPP_EXPORT void *get_module()
         Php::ByVal("extra", Php::Type::Float, false),
         Php::ByVal("timeout", Php::Type::Float, false)
     });
+    json_client.method<&JsonClient::searchPublicChats> ("searchPublicChats", {
+        Php::ByVal("query", Php::Type::String),
+        Php::ByVal("timeout", Php::Type::Float, false)
+    });
     json_client.method<&JsonClient::setAuthenticationPhoneNumber> ("setAuthenticationPhoneNumber", {
         Php::ByVal("phone_number", Php::Type::String),
         Php::ByVal("timeout", Php::Type::Float, false)
