@@ -187,7 +187,7 @@ Php::Value JsonClient::acceptCall(Php::Parameters &params) {
     return addExtraAndSendQuery(
             "acceptCall",
             &jsonQuery,
-            getTimeoutFromParams(params, 2)
+            defaultTimeout
     );
 }
 
@@ -199,7 +199,7 @@ Php::Value JsonClient::acceptTermsOfService(Php::Parameters &params) {
     return addExtraAndSendQuery(
             "acceptTermsOfService",
             &jsonQuery,
-            getTimeoutFromParams(params, 1)
+            defaultTimeout
     );
 }
 
@@ -211,7 +211,7 @@ Php::Value JsonClient::checkDatabaseEncryptionKey(Php::Parameters &params) {
     return addExtraAndSendQuery(
             "checkDatabaseEncryptionKey",
             &jsonQuery,
-            getTimeoutFromParams(params, 1)
+            defaultTimeout
     );
 }
 
@@ -221,7 +221,7 @@ Php::Value JsonClient::getAccountTtl(Php::Parameters &params) {
     return addExtraAndSendQuery(
             "getAccountTtl",
             &jsonQuery,
-            getTimeoutFromParams(params, 0)
+            defaultTimeout
     );
 }
 
@@ -231,7 +231,57 @@ Php::Value JsonClient::getActiveLiveLocationMessages(Php::Parameters &params) {
     return addExtraAndSendQuery(
             "getActiveLiveLocationMessages",
             &jsonQuery,
-            getTimeoutFromParams(params, 0)
+            defaultTimeout
+    );
+}
+
+Php::Value JsonClient::getActiveSessions(Php::Parameters &params) {
+    json jsonQuery;
+
+    return addExtraAndSendQuery(
+            "getActiveSessions",
+            &jsonQuery,
+            defaultTimeout
+    );
+}
+
+Php::Value JsonClient::getAllPassportElements(Php::Parameters &params) {
+    json jsonQuery;
+
+    return addExtraAndSendQuery(
+            "getAllPassportElements",
+            &jsonQuery,
+            defaultTimeout
+    );
+}
+
+Php::Value JsonClient::getArchivedStickerSets(Php::Parameters &params) {
+    json jsonQuery;
+    const bool is_masks = params[0];
+    const int offset_sticker_set_id = params[1];
+    const int limit = params[2];
+
+    jsonQuery["is_masks"] = is_masks;
+    jsonQuery["offset_sticker_set_id"] = offset_sticker_set_id;
+    jsonQuery["limit"] = limit;
+
+    return addExtraAndSendQuery(
+            "getArchivedStickerSets",
+            &jsonQuery,
+            defaultTimeout
+    );
+}
+
+Php::Value JsonClient::getAttachedStickerSets(Php::Parameters &params) {
+    json jsonQuery;
+    const int file_id = params[0];
+
+    jsonQuery["file_id"] = file_id;
+
+    return addExtraAndSendQuery(
+            "getAttachedStickerSets",
+            &jsonQuery,
+            defaultTimeout
     );
 }
 
@@ -241,7 +291,7 @@ Php::Value JsonClient::getAuthorizationState(Php::Parameters &params) {
     return addExtraAndSendQuery(
             "getAuthorizationState",
             &jsonQuery,
-            getTimeoutFromParams(params, 0)
+            defaultTimeout
     );
 }
 
@@ -253,7 +303,7 @@ Php::Value JsonClient::searchPublicChats(Php::Parameters &params) {
     return addExtraAndSendQuery(
             "searchPublicChats",
             &jsonQuery,
-            getTimeoutFromParams(params, 1)
+            defaultTimeout
     );
 }
 
@@ -265,7 +315,7 @@ Php::Value JsonClient::setAuthenticationPhoneNumber(Php::Parameters &params) {
     return addExtraAndSendQuery(
             "setAuthenticationPhoneNumber",
             &jsonQuery,
-            getTimeoutFromParams(params, 1)
+            defaultTimeout
     );
 }
 
@@ -277,7 +327,7 @@ Php::Value JsonClient::setDatabaseEncryptionKey(Php::Parameters &params) {
     return addExtraAndSendQuery(
             "setDatabaseEncryptionKey",
             &jsonQuery,
-            getTimeoutFromParams(params, 1)
+            defaultTimeout
     );
 }
 
@@ -294,6 +344,6 @@ Php::Value JsonClient::setTdlibParameters(Php::Parameters &params) {
     return addExtraAndSendQuery(
             "setTdlibParameters",
             &jsonQuery,
-            getTimeoutFromParams(params, 1)
+            defaultTimeout
     );
 }

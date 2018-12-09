@@ -73,9 +73,17 @@ PHPCPP_EXPORT void *get_module()
     json_client.method<&JsonClient::checkDatabaseEncryptionKey> ("checkDatabaseEncryptionKey", {
         Php::ByVal("key", Php::Type::String),
     });
-    json_client.method<&JsonClient::getAccountTtl> ("getAccountTtl", {
+    json_client.method<&JsonClient::getAccountTtl> ("getAccountTtl", {});
+    json_client.method<&JsonClient::getActiveLiveLocationMessages> ("getActiveLiveLocationMessages", {});
+    json_client.method<&JsonClient::getActiveSessions> ("getActiveSessions", {});
+    json_client.method<&JsonClient::getAllPassportElements> ("getAllPassportElements", {});
+    json_client.method<&JsonClient::getArchivedStickerSets> ("getArchivedStickerSets", {
+        Php::ByVal("is_masks", Php::Type::Bool, false),
+        Php::ByVal("offset_sticker_set_id", Php::Type::Numeric, false),
+        Php::ByVal("limit", Php::Type::Float, false) // todo. must be positive number
     });
-    json_client.method<&JsonClient::getActiveLiveLocationMessages> ("getActiveLiveLocationMessages", {
+    json_client.method<&JsonClient::getAttachedStickerSets> ("getAttachedStickerSets", {
+        Php::ByVal("file_id", Php::Type::Numeric),
     });
     json_client.method<&JsonClient::getAuthorizationState> ("getAuthorizationState", {
         Php::ByVal("extra", Php::Type::Float, false),

@@ -50,8 +50,11 @@ $result = $client->setDatabaseEncryptionKey();
 $result = $client->setAuthenticationPhoneNumber("xxx");
 // UNCOMMENT WHEN RECEIVE SMS AND INSERT CODE.
 // $result = $client->query(json_encode(['@type' => 'checkAuthenticationCode', 'code' => 'xxx', 'first_name' => 'dummy', 'last_name' => 'dummy']), 10);
+
 $result = $client->getAuthorizationState(1.01234);
-$result = $client->query(json_encode(['@type' => 'searchPublicChat', 'username' => 'telegram']), 10);
+
+// $result = $client->query(json_encode(['@type' => 'searchPublicChats', 'username' => 'telegram']), 10);
+$result = $client->searchPublicChats('telegram');
 var_dump($result);
 
 $allNotifications = $client->getReceivedResponses();

@@ -45,6 +45,10 @@ class JsonClient : public BaseJsonClient
         Php::Value checkDatabaseEncryptionKey(Php::Parameters &params);
         Php::Value getAccountTtl(Php::Parameters &params);
         Php::Value getActiveLiveLocationMessages(Php::Parameters &params);
+        Php::Value getActiveSessions(Php::Parameters &params);
+        Php::Value getAllPassportElements(Php::Parameters &params);
+        Php::Value getArchivedStickerSets(Php::Parameters &params);
+        Php::Value getAttachedStickerSets(Php::Parameters &params);
         Php::Value getAuthorizationState(Php::Parameters &params);
         Php::Value searchPublicChats(Php::Parameters &params);
         Php::Value setAuthenticationPhoneNumber(Php::Parameters &params);
@@ -143,11 +147,11 @@ class JsonClient : public BaseJsonClient
 - [ ] forwardMessages
 - [ ] generateChatInviteLink
 - [X] getAccountTtl
-- [ ] getActiveLiveLocationMessages
-- [ ] getActiveSessions
-- [ ] getAllPassportElements
-- [ ] getArchivedStickerSets
-- [ ] getAttachedStickerSets
+- [X] getActiveLiveLocationMessages
+- [X] getActiveSessions
+- [X] getAllPassportElements
+- [X] getArchivedStickerSets
+- [X] getAttachedStickerSets
 - [X] getAuthorizationState
 - [ ] getBasicGroup
 - [ ] getBasicGroupFullInfo
