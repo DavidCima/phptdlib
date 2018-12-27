@@ -1,0 +1,21 @@
+FROM alpine:latest
+LABEL maintainer="yaroslav429@gmail.com"
+
+RUN apk update && apk upgrade
+RUN apk add git sudo bash g++ cmake php7 php7-json php7-ctype php7-dev make zlib gperf openssl openssl-dev ccache
+RUN cd ~/
+RUN (cd ~/ && git clone https://github.com/CopernicaMarketingSoftware/PHP-CPP.git && cd PHP-CPP && make -j5 && sudo make install)
+RUN (cd ~/ && git clone --recurse-submodules https://github.com/yaroslavche/phptdlib.git)
+
+#RUN (cd ~/phptdlib/modules/json && mkdir build && cd build && cmake .. && make install)
+
+RUN cd ~/phptdlib && mkdir build && cd build && cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=On .. && make -j3
+RUN cd ~/phptdlib/build && sudo make install
+
+# pvs
+RUN cd ~/ &&\
+    apk add rpm strace &&\
+    wget -q -O pvs_studio.rpm http://files.viva64.com/pvs-studio-6.27.28939.741-x86_64.rpm &&\
+    wget -q -O /tmp/viva64.key http://files.viva64.com/etc/pubkey.txt &&\
+    sudo rpm --import /tmp/viva64.key &&\
+    sudo rpm --dbpath $HOME/myrpmdb --nodeps -ivh pvs_studio.rpm
